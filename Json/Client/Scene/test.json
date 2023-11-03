@@ -66,6 +66,69 @@
                 }
             ],
             "children": []
+        },
+        {
+            "name": "Parallax",
+            "plugins": [
+                {
+                    "name": "Parallax",
+                    "width": 1920,
+                    "end": 0,
+                    "speed": 100
+                }
+            ],
+            "children": [
+                {
+                    "name": "1",
+                    "transform": {
+                        "scale": {
+                            "x": 3,
+                            "y": 3
+                        }
+                    },
+                    "plugins": [
+                        {
+                            "name": "PrintablePlugin",
+                            "type": "sprite",
+                            "texture": {
+                                "path": "./Assets/parallax.png"
+                            }
+                        },
+                        {
+                            "name": "PhysicsPlugin",
+                            "isOverlap": true,
+                            "boxes": []
+                        }
+                    ]
+                },
+                {
+                    "name": "2",
+                    "transform": {
+                        "position": {
+                            "x": 1920,
+                            "y": 0
+                        },
+                        "scale": {
+                            "x": 3,
+                            "y": 3
+                        }
+                    },
+                    "plugins": [
+                        {
+                            "name": "PrintablePlugin",
+                            "type": "sprite",
+                            "texture": {
+                                "path": "./Assets/parallax.png"
+                            }
+                        },
+                        {
+                            "name": "PhysicsPlugin",
+                            "isOverlap": true,
+                            "boxes": []
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
