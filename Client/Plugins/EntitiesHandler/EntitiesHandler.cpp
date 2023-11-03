@@ -17,7 +17,6 @@ EntitiesHandler::EntitiesHandler(Uniti::Object &object): _object(object) {
     this->_event.addEvent("Entities", [&](const Json::Value &value) {
         for (const auto &nameVessel : value["data"].getMemberNames()) {
             auto data = value["data"][nameVessel];
-            auto position = Uniti::Vector2f(data["position"]);
             auto id = data["id"].asString();
             std::string vesselName = "BasicVessel";
 
@@ -32,13 +31,10 @@ EntitiesHandler::EntitiesHandler(Uniti::Object &object): _object(object) {
             if (!copy) return;
             if (!vessel) {
                 auto newVessel = std::make_unique<Uniti::Object>(copy.value());
-                newVessel->getTransform().getPosition().getX() = position.getX();
-                newVessel->getTransform().getPosition().getY() = position.getY();
                 newVessel->setName(id);
                 this->_object.getScene().getObjects().add(std::move(newVessel));
             } else {
-                vessel.value().get().getTransform().getPosition().setX(position.getX());
-                vessel.value().get().getTransform().getPosition().setY(position.getY());
+                vessel.value().get().emitEvent("moveTo", data);
             }
         }
     });
