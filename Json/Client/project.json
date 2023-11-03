@@ -1,0 +1,16 @@
+{
+    "plugins": [
+        {
+            "name": "RenderPlugin"
+        },
+        {
+            "name": "NetworkPlugin"
+        }
+    ],
+    "name": "RType",
+    "sceneFolder": "./Json/Client/Scene",
+    "startScene": "test.json",
+    "globalScene": "globalScene.json",
+    "ObjectPlugins": "./ObjectPlugin",
+    "CorePlugins": "./CorePlugin"
+}
