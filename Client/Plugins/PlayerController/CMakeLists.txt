@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(PlayerController SHARED PlayerController.cpp)
+set_target_properties(PlayerController PROPERTIES PREFIX "")
 target_link_libraries(PlayerController PUBLIC Uniti)
 
 target_include_directories(PlayerController PUBLIC ".")

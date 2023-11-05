@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(Parallax SHARED Parallax.cpp)
+set_target_properties(Parallax PROPERTIES PREFIX "")
 target_link_libraries(Parallax PUBLIC Uniti)
 
 target_include_directories(Parallax PUBLIC ".")
