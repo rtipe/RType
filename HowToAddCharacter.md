@@ -1,67 +1,224 @@
-# Adding a Character to Your C++ Project
+# How to Add an Character
 
-## Creating the Enemy's Skin
+To add an Character, follow these steps:
 
-To add an enemy to your project, you first need to create its appearance, known as the "skin." Follow these steps:
+1. **Create Character Skin**:
+   - First, create a skin for the character by creating a file in the `Json/Client/Entities` directory.
 
-1. Create a file in the `Json/Client/Entities` directory to represent your enemy.
+2. **Define Character Properties**:
+   - Inside the file, define the Character properties using a JSON format. For example, you can use the `basiccharacter.json` template.
 
-2. Inside the file, describe the enemy's properties using JSON format.
-
-   Here's a basic example of the `basicEnemy.json` file:
-
+   Example `basiccharacter.json`:
    ```json
    {
-       "name": "Basic Enemy",
-       "health": 100,
-       "damage": 10,
-       "speed": 2.0,
-       "sprite": "basic_enemy.png"
-   }
-
-   You can customize the properties based on your game.
-
-## Initializing the Enemy in the Client Scene File
-
-Once you have created the JSON file for the enemy, you need to initialize it in your client scene file:
-
-1. Open the `Json/Client/Scene/test.json` file.
-
-2. Inside this file, add the enemy's reference as follows:
-
-```json
-"entities": [
-    {
-        "type": "character",
-        "skin": "Entities/basicEnemy.json",
-        "position": {
-            "x": 100,
-            "y": 200
+    "name": "CharacterA",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
         }
-    }
-]
-```
-## Creating the Server-Side Character File
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Ally/vessel.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 34,
+                "width": 32,
+                "height": 16
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 34,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 32,
+                            "y": 34,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 64,
+                            "y": 34,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 96,
+                            "y": 34,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 128,
+                            "y": 34,
+                            "width": 32,
+                            "height": 16
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+   }
+   ```
 
-To synchronize the character with the server, you need to create a server-side character file. Follow the same pattern as before:
 
-1. Create a file in the `Json/Server/Scene/Character` directory to represent your character on the server.
+   ## Explanation of Parameters:
 
-2. Inside the file, describe the character's properties using JSON format.
+   - `name`: The name of the entity, in this case, "Basiccharacter".
 
-   Customize the properties to match your game's requirements.
+   - `transform`: Describes the transformation properties of the entity.
 
-## Initializing the Server-Side Character in the Main Server Scene
+     - `scale`: Specifies the scaling factors along the x and y axes. In this case, the entity has a scale of 1 in both dimensions.
 
-Now, initialize the character on the server in the main scene file:
+   - `plugins`: Contains an array of plugins that define additional functionality for the entity.
 
-1. Open the `Json/Server/Scene/mainScene.json` file.
+     - `PrintablePlugin`: Renders the entity as a sprite.
 
-2. Inside this file, add the character's reference in the server scene:
+       - `type`: Specifies that the printable plugin renders a sprite.
 
+       - `texture`: Defines the properties of the texture used for the sprite.
+
+         - `path`: The file path to the texture image.
+
+       - `zIndex`: Sets the render depth of the sprite.
+
+       - `textureRect`: Specifies the portion of the texture to be used.
+
+     - `PhysicsPlugin`: Manages the physics properties of the entity.
+
+       - `isOverlap`: Indicates if the entity can overlap with other objects.
+
+       - `boxes`: An array of bounding boxes used for collision detection. (Currently empty in this example)
+
+     - `Animation`: Enables animation for the entity.
+
+       - `animations`: Contains an array of animation sequences.
+
+         - `name`: The name of the animation sequence, in this case, "idle".
+
+         - `time`: The time in seconds between each frame.
+
+         - `frames`: Contains an array of frames that make up the animation.
+
+           - `x`: The x-coordinate of the frame in the texture.
+
+           - `y`: The y-coordinate of the frame in the texture.
+
+           - `width`: The width of the frame.
+
+           - `height`: The height of the frame.
+
+   - `children`: An array that can hold child entities. In this case, it's empty.
+  
+   ***Initialize in Test Scene***:
+      - Initialize the character in the Json/Client/Scene/test.json file by adding it to the list of entities.
+
+   ***Create Server-Side character***:
+      - Create a file for the character on the server side in the Json/Server/Scene/Enemies directory, following a similar process as above.
+
+
+   Example `basiccharacter.json`:
    ```json
-   "characters": [
-       {
-           "type": "character",
-           "character_file": "Character/yourCharacterFile.json"
-       }
+   {
+    "random": 10,
+    "name": "Tank",
+    "plugins": [
+        {
+            "name": "Entity",
+            "speed": 100,
+            "hp": 300,
+            "type": "character",
+            "ai": false,
+            "spawnProjectile": {
+                "x": 0,
+                "y": 0
+            },
+            "attacks": [
+                {
+                    "damage": 15,
+                    "cooldown": 2,
+                    "projectile": "./Json/Server/Scene/Projectile/BasicProjectile.json"
+                },
+                {
+                    "damage": 40,
+                    "cooldown": 10,
+                    "projectile": "./Json/Server/Scene/Projectile/BigProjectile.json"
+                }
+            ]
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [{
+                "x": 0,
+                "y": 0,
+                "width": 51,
+                "height": 59
+            }]
+        }
+    ]
+   }
+   ```
+
+   ## Explanation of Parameters:
+
+   - `random`: A numerical value set to 10.
+
+   - `name`: The name of the entity, which is "Tank".
+
+   - `plugins`: An array containing two plugin objects that define additional functionality for the entity.
+
+     - `Entity`: Specifies properties related to the entity itself.
+
+       - `speed`: The speed of the entity, set to 100.
+
+       - `hp`: The health points (hit points) of the entity, set to 300.
+
+       - `type`: The type of the entity, in this case, "character".
+
+       - `ai`: A boolean value indicating whether the entity has artificial intelligence (AI), set to `false`.
+
+       - `spawnProjectile`: The position (x, y) at which projectiles are spawned from the entity, initially set to (0, 0).
+
+       - `attacks`: An array containing multiple attack configurations.
+
+         - `damage`: The damage dealt by an attack, which can vary.
+
+         - `cooldown`: The cooldown time between attacks, measured in seconds.
+
+         - `projectile`: The JSON file that defines the projectile used in the attack.
+
+     - `PhysicsPlugin`: Manages the physics properties of the entity.
+
+       - `isOverlap`: Indicates whether the entity can overlap with other objects, set to `true`.
+
+       - `boxes`: An array of bounding boxes used for collision detection. In this case, there is one box defined with specific dimensions (x, y, width, and height).
+  
+   ***Initialize in Main Server Scene***:
+      - Initialize the character in the Json/Server/Scene/mainScene.json file on the server side.
+  
+   ### Now, you have successfully added an character to your game!
+   
