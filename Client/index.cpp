@@ -5,11 +5,12 @@
 #include "Core.hpp"
 
 int main() {
-    try {
-        Uniti::Core mainInstance(Uniti::Object::openJsonFile("./Json/Client/project.json"));
+  try {
+    Uniti::Core mainInstance(
+        Uniti::Object::openJsonFile("./Json/Client/project.json"));
 
-        mainInstance.start();
-    } catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    mainInstance.start();
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
+  }
 }
