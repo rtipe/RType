@@ -1,0 +1,112 @@
+name: Build and Release C++ RType Project
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build with CMake
+        run: cmake --build build --config Release -j
+
+      - name: Start Cpack
+        run: cd build && cpack --config .\CPackSourceConfig.cmake -G NSIS
+
+      - name: Create Release Directory
+        run: mkdir release
+
+      - name: Move connect4 to Release
+        run: move build\rtypeV2-OFF-Source.exe release\rtypeV2.exe
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Install Dependencies on Ubuntu
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libx11-dev libxrandr-dev libxrender-dev libxfixes-dev libxcursor-dev libxinerama-dev mesa-common-dev libudev-dev libopenal-dev libvorbis-dev libflac-dev libfreetype6-dev
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build with CMake
+        run: cmake --build build
+
+      - name: Create Release Directory
+        run: mkdir release
+
+      - name: Start Cpack
+        run: cd build && cpack --config ./CPackSourceConfig.cmake -G STGZ
+
+      - name: Move Library to Release
+        run: mv build/rtypeV2-OFF-Source.sh release/rtypeV2.sh
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-macos:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Install Dependencies on Ubuntu
+        run: |
+          brew install cmake llvm
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build with CMake
+        run: cmake --build build
+
+      - name: Create Release Directory
+        run: mkdir release
+
+      - name: Start Cpack
+        run: cd build && cpack --config ./CPackSourceConfig.cmake -G DragNDrop
+
+      - name: Move Library to Release
+        run: mv build/rtypeV2-OFF-Source.dmg release/rtypeV2.dmg
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
