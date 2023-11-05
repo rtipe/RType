@@ -41,7 +41,9 @@ In the R-Type game mode, players have the option to choose from three unique cha
 ## Controls
 
 - Use the arrow keys (up, down, left, right) to control the movement of your spacecraft.
-- Press the left click of your mouse to shoot at enemies and obstacles.
+- Press 'A' for a basic shot.
+- Press 'Z' for a directional shot.
+- Press 'R' for a powerful shot.
 - Collect power-ups to upgrade your weapons and abilities.
 
 ## Build
