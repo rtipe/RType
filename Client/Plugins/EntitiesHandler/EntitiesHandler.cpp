@@ -3,44 +3,56 @@
 //
 
 #include "EntitiesHandler.hpp"
-#include "Vector2f.hpp"
 #include "Object.hpp"
 #include "Scene.hpp"
 #include "PluginCreator.hpp"
 #include "API.hpp"
+#include "Core.hpp"
+#include "json/json.h"
 
 EntitiesHandler::EntitiesHandler(Uniti::Object &object): _object(object) {
-    std::vector<std::string> vesselType =
-            {"BasicEnemy", "Kamikaze", "Sniper", "Tank", "Boss", "VesselHeal", "VesselWeapon"};
-    std::vector<std::string> noExplosion = {"VesselHeal", "VesselWeapon"};
-
     this->_event.addEvent("Entities", [&](const Json::Value &value) {
         for (const auto &nameVessel : value["data"].getMemberNames()) {
             auto data = value["data"][nameVessel];
-            auto id = data["id"].asString();
-            std::string vesselName = "BasicVessel";
+            std::string vesselName;
 
-            auto it = std::find_if(vesselType.begin(), vesselType.end(), [&](const std::string &type) {
-                return id.starts_with(type);
+            auto check = std::find(this->_deleteEntities.begin(), this->_deleteEntities.end(), nameVessel);
+            if (check != this->_deleteEntities.end()) return;
+            auto it = std::find_if(this->_entities.begin(), this->_entities.end(), [&](std::pair<const std::string, Json::Value> type) {
+                return nameVessel.starts_with(type.first);
             });
-            if (it != vesselType.end())
-                vesselName = *it;
-            auto copy   = Uniti::Object::find(vesselName, this->_object.getScene());
-            auto vessel = Uniti::Object::find(id, this->_object.getScene());
+            if (it != this->_entities.end())
+                vesselName = it->first;
+            else
+                vesselName = this->_entities.begin()->first;
 
-            if (!copy) return;
+            auto vessel = Uniti::Object::find(nameVessel, this->_object.getScene());
+
             if (!vessel) {
-                auto newVessel = std::make_unique<Uniti::Object>(copy.value());
-                newVessel->setName(id);
+                auto newVessel = std::make_unique<Uniti::Object>(this->_entities[vesselName], this->_object.getScene());
+                newVessel->setName(nameVessel);
+                newVessel->getTransform().getPosition() = Uniti::Vector2f(data["position"]);
                 this->_object.getScene().getObjects().add(std::move(newVessel));
             } else {
-                vessel.value().get().emitEvent("moveTo", data);
+                vessel.value().get().getTransform().getPosition() = Uniti::Vector2f(data["position"]);
             }
         }
     });
-    this->_event.addEvent("destroyEntity", [&](const Json::Value &value) {
-       for (const auto &name : value["data"]) {
-           this->_object.getScene().getObjects().remove(name.asString());
+    this->_event.addEvent("DestroyEntity", [&](const Json::Value &value) {
+        for (const auto &nameVessel : value["data"].getMemberNames()) {
+            this->_object.getScene().getObjects().remove(nameVessel);
+            this->_deleteEntities.push_back(nameVessel);
+            if (this->_deleteEntities.size() >= 200)
+                this->_deleteEntities.erase(this->_deleteEntities.begin());
+            auto it = std::find_if(this->_noExplosion.begin(), this->_noExplosion.end(), [&](const std::string &type) {
+                return nameVessel.starts_with(type);
+            });
+            if (it != this->_noExplosion.end()) continue;
+            auto vessel = Uniti::Object::find(nameVessel, this->_object.getScene());
+            auto explosion = std::make_unique<Uniti::Object>(this->_explosion, this->_object.getScene());
+            explosion->setName(nameVessel + "_explosion");
+            explosion->getTransform().getPosition() = vessel.value().get().getTransform().getPosition();
+            this->_object.getScene().getObjects().add(std::move(explosion));
        }
     });
 }
@@ -50,7 +62,11 @@ Uniti::Object &EntitiesHandler::getObject() {
 }
 
 void EntitiesHandler::awake(const Json::Value &value) {
-
+    for (const auto &entity : value["entities"].getMemberNames())
+        this->_entities[entity] = Uniti::Object::openJsonFile(value["entities"][entity].asString());
+    for (const auto &entity : value["noExplosion"])
+        this->_noExplosion.push_back(entity.asString());
+    this->_explosion = Uniti::Object::openJsonFile(value["explosion"].asString());
 }
 
 void EntitiesHandler::preStart() {
@@ -62,7 +78,12 @@ void EntitiesHandler::start() {
 }
 
 void EntitiesHandler::postStart() {
+    Json::Value send;
 
+    send["serverName"] = "game";
+    send["name"] = "createPlayer";
+    send["value"] = "characterA";
+    this->_object.getCore().getPluginManager().emitEvent("sendEvent", send);
 }
 
 void EntitiesHandler::preUpdate() {

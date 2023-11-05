@@ -1,0 +1,90 @@
+{
+    "name": "Sniper",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Enemy/sniper.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 33,
+                "height": 32
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 33,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 66,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 99,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 132,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 165,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 198,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        },
+                        {
+                            "x": 231,
+                            "y": 0,
+                            "width": 33,
+                            "height": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

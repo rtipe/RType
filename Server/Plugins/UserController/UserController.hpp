@@ -1,14 +1,14 @@
 //
-// Created by youba on 03/11/2023.
+// Created by youba on 04/11/2023.
 //
 
 #pragma once
 
 #include "IObjectPlugin.hpp"
 
-class EntitiesHandler : public Uniti::IObjectPlugin {
+class UserController : public Uniti::IObjectPlugin {
 public:
-    EntitiesHandler(Uniti::Object &object);
+    UserController(Uniti::Object &object);
 
     Uniti::Object &getObject() override;
 
@@ -41,10 +41,7 @@ public:
     Uniti::Event &getEvent() override;
 
 private:
-    std::vector<std::string> _deleteEntities;
-    std::map<std::string, Json::Value> _entities;
-    Json::Value _explosion;
-    std::vector<std::string> _noExplosion;
+    std::map<std::string, Json::Value> _pathCharacter;
     Uniti::Object &_object;
     Uniti::Clock _clock;
     Uniti::Event _event;

@@ -1,0 +1,23 @@
+{
+    "name": "BasicProjectile",
+    "plugins": [
+        {
+            "name": "Projectile",
+            "speed": 300,
+            "damage": 10,
+            "type": "ally"
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "width": 150,
+                    "height": 150
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+{
+    "name": "DirectionalProjectile",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Projectile/basicProjectile.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 17,
+                "height": 17
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 17,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 34,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 51,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 68,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 85,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 102,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 119,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 136,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 153,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 170,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        },
+                        {
+                            "x": 187,
+                            "y": 0,
+                            "width": 17,
+                            "height": 17
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        {
+            "name": "NetworkPlugin",
+            "port": 5215
+        }
+    ],
+    "name": "RType-server",
+    "sceneFolder": "./Json/Server/Scene",
+    "startScene": "mainScene.json",
+    "globalScene": "globalScene.json",
+    "ObjectPlugins": "./ObjectPlugin",
+    "CorePlugins": "./CorePlugin"
+}

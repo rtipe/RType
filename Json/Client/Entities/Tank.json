@@ -1,0 +1,66 @@
+{
+    "name": "Tank",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Enemy/Tank.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 51,
+                "height": 59
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.3,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 51,
+                            "height": 59
+                        },
+                        {
+                            "x": 51,
+                            "y": 0,
+                            "width": 51,
+                            "height": 59
+                        },
+                        {
+                            "x": 108,
+                            "y": 0,
+                            "width": 52,
+                            "height": 59
+                        },
+                        {
+                            "x": 51,
+                            "y": 0,
+                            "width": 51,
+                            "height": 59
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

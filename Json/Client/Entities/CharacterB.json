@@ -1,0 +1,72 @@
+{
+    "name": "CharacterA",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Ally/vessel.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 32,
+                "height": 16
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 32,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 64,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 96,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 128,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

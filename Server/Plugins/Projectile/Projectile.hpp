@@ -1,14 +1,16 @@
 //
-// Created by youba on 03/11/2023.
+// Created by youba on 04/11/2023.
 //
 
 #pragma once
 
 #include "IObjectPlugin.hpp"
+#include "Vector.hpp"
+#include "../Entity/Entity.hpp"
 
-class EntitiesHandler : public Uniti::IObjectPlugin {
+class Projectile : public Uniti::IObjectPlugin {
 public:
-    EntitiesHandler(Uniti::Object &object);
+    Projectile(Uniti::Object &object);
 
     Uniti::Object &getObject() override;
 
@@ -41,11 +43,13 @@ public:
     Uniti::Event &getEvent() override;
 
 private:
-    std::vector<std::string> _deleteEntities;
-    std::map<std::string, Json::Value> _entities;
-    Json::Value _explosion;
-    std::vector<std::string> _noExplosion;
+    static int _id;
     Uniti::Object &_object;
     Uniti::Clock _clock;
     Uniti::Event _event;
+    float _damage;
+    bool _directional;
+    Uniti::Vector2f _normal;
+    float _speed;
+    Entity::EntityType _type;
 };
