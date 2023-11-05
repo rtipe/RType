@@ -80,14 +80,16 @@ Uniti::Object &PlayerController::getObject() {
 }
 
 void PlayerController::awake(const Json::Value &value) {
-
+    this->_ip = value.get("ip", "").asString();
+    this->_port = value.get("port", 0).asInt();
+    this->_character = value.get("character", "").asString();
 }
 
 void PlayerController::preStart() {
     Json::Value server;
     server["name"] = "game";
-    server["ip"] = "127.0.0.1";
-    server["port"] = 5215;
+    server["ip"] = this->_ip;
+    server["port"] = this->_port;
     this->_object.getCore().getPluginManager().emitEvent("addServer", server);
 }
 
@@ -96,7 +98,12 @@ void PlayerController::start() {
 }
 
 void PlayerController::postStart() {
+    Json::Value send;
 
+    send["serverName"] = "game";
+    send["name"] = "createPlayer";
+    send["value"] = this->_character;
+    this->_object.getCore().getPluginManager().emitEvent("sendEvent", send);
 }
 
 void PlayerController::preUpdate() {

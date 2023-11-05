@@ -46,5 +46,8 @@ private:
     Uniti::Clock _clock;
     Uniti::Event _event;
     bool _isPressed = false;
+    int _port;
+    std::string _ip;
+    std::string _character;
     Uniti::Vector2f _normal;
 };
