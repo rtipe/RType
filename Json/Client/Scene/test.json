@@ -5,7 +5,10 @@
             "name": "Controller",
             "plugins": [
                 {
-                    "name": "PlayerController"
+                    "name": "PlayerController",
+                    "ip": "127.0.0.1",
+                    "port": 5215,
+                    "character": "characterB"
                 },
                 {
                     "name": "EntitiesHandler",

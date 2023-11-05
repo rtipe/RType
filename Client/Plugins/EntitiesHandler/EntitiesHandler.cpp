@@ -78,12 +78,7 @@ void EntitiesHandler::start() {
 }
 
 void EntitiesHandler::postStart() {
-    Json::Value send;
 
-    send["serverName"] = "game";
-    send["name"] = "createPlayer";
-    send["value"] = "characterA";
-    this->_object.getCore().getPluginManager().emitEvent("sendEvent", send);
 }
 
 void EntitiesHandler::preUpdate() {

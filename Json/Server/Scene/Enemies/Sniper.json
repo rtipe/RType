@@ -26,8 +26,8 @@
             "boxes": [{
                 "x": 0,
                 "y": 0,
-                "width": 150,
-                "height": 150
+                "width": 32,
+                "height": 32
             }]
         }
     ]
