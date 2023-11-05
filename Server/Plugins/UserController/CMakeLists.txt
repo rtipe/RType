@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(UserController SHARED UserController.cpp)
+set_target_properties(UserController PROPERTIES PREFIX "")
 target_link_libraries(UserController PUBLIC Uniti)
 
 target_include_directories(UserController PUBLIC ".")

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(Projectile SHARED Projectile.cpp ../Entity/Entity.cpp)
+set_target_properties(Projectile PROPERTIES PREFIX "")
 target_link_libraries(Projectile PUBLIC Uniti)
 
 target_include_directories(Projectile PUBLIC ".")

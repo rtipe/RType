@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(Animation SHARED Animation.cpp)
+set_target_properties(Animation PROPERTIES PREFIX "")
 target_link_libraries(Animation PUBLIC Uniti)
 
 target_include_directories(Animation PUBLIC ".")

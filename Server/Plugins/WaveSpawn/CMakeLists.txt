@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(WaveSpawn SHARED WaveSpawn.cpp)
+set_target_properties(WaveSpawn PROPERTIES PREFIX "")
 target_link_libraries(WaveSpawn PUBLIC Uniti)
 
 target_include_directories(WaveSpawn PUBLIC ".")

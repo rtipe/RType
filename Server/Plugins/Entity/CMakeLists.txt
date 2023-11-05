@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(Entity SHARED Entity.cpp EntryPoint.cpp)
+set_target_properties(Entity PROPERTIES PREFIX "")
 target_link_libraries(Entity PUBLIC Uniti)
 
 target_include_directories(Entity PUBLIC ".")
