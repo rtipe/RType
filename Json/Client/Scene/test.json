@@ -2,67 +2,30 @@
     "plugins": [],
     "objects": [
         {
-            "name": "AnimationTest",
-            "transform": {
-                "scale": {
-                    "x": 1,
-                    "y": 1
-                }
-            },
+            "name": "Controller",
             "plugins": [
                 {
-                    "name": "PrintablePlugin",
-                    "type": "sprite",
-                    "texture": {
-                        "path": "./Assets/Explosion.gif"
-                    },
-                    "textureRect": {
-                        "x": 0,
-                        "y": 98,
-                        "width": 65,
-                        "height": 65
-                    }
+                    "name": "PlayerController"
                 },
                 {
-                    "name": "Animation",
-                    "animations": [
-                        {
-                            "name": "idle",
-                            "time": 0.1,
-                            "frames": [
-                                {
-                                    "x": 0,
-                                    "y": 98,
-                                    "width": 65,
-                                    "height": 65
-                                },
-                                {
-                                    "x": 65,
-                                    "y": 98,
-                                    "width": 65,
-                                    "height": 65
-                                },
-                                {
-                                    "x": 130,
-                                    "y": 98,
-                                    "width": 65,
-                                    "height": 65
-                                },
-                                {
-                                    "x": 195,
-                                    "y": 98,
-                                    "width": 65,
-                                    "height": 65
-                                },
-                                {
-                                    "x": 260,
-                                    "y": 98,
-                                    "width": 65,
-                                    "height": 65
-                                }
-                            ]
-                        }
-                    ]
+                    "name": "EntitiesHandler",
+                    "explosion": "./Json/Client/Entities/Explosion.json",
+                    "entities": {
+                        "Boss1": "./Json/Client/Entities/Boss1.json",
+                        "BasicEnemy": "./Json/Client/Entities/BasicEnemy.json",
+                        "Kamikaze": "./Json/Client/Entities/Kamikaze.json",
+                        "Sniper": "./Json/Client/Entities/Sniper.json",
+                        "Tank": "./Json/Client/Entities/Tank.json",
+                        "CharacterA": "./Json/Client/Entities/CharacterA.json",
+                        "CharacterB": "./Json/Client/Entities/CharacterB.json",
+                        "CharacterC": "./Json/Client/Entities/CharacterC.json",
+                        "BasicProjectile": "./Json/Client/Entities/BasicProjectile.json",
+                        "BasicProjectileAlly": "./Json/Client/Entities/BasicProjectile.json",
+                        "DirectionalProjectile": "./Json/Client/Entities/BasicProjectile.json",
+                        "DirectionalProjectileAlly": "./Json/Client/Entities/BasicProjectile.json",
+                        "BigProjectile": "./Json/Client/Entities/BigProjectile.json",
+                        "BigProjectileAlly": "./Json/Client/Entities/BigProjectile.json"
+                    }
                 }
             ],
             "children": []
@@ -92,7 +55,8 @@
                             "type": "sprite",
                             "texture": {
                                 "path": "./Assets/parallax.png"
-                            }
+                            },
+                            "zIndex": -1
                         },
                         {
                             "name": "PhysicsPlugin",
@@ -119,7 +83,8 @@
                             "type": "sprite",
                             "texture": {
                                 "path": "./Assets/parallax.png"
-                            }
+                            },
+                            "zIndex": -1
                         },
                         {
                             "name": "PhysicsPlugin",

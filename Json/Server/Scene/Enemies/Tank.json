@@ -1,0 +1,39 @@
+{
+    "random": 10,
+    "name": "Tank",
+    "plugins": [
+        {
+            "name": "Entity",
+            "speed": 100,
+            "hp": 300,
+            "type": "enemy",
+            "ai": false,
+            "spawnProjectile": {
+                "x": 0,
+                "y": 0
+            },
+            "attacks": [
+                {
+                    "damage": 15,
+                    "cooldown": 2,
+                    "projectile": "./Json/Server/Scene/Projectile/BasicProjectile.json"
+                },
+                {
+                    "damage": 40,
+                    "cooldown": 10,
+                    "projectile": "./Json/Server/Scene/Projectile/BigProjectile.json"
+                }
+            ]
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [{
+                "x": 0,
+                "y": 0,
+                "width": 150,
+                "height": 150
+            }]
+        }
+    ]
+}

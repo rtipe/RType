@@ -1,0 +1,34 @@
+{
+    "random": 20,
+    "name": "basicEnemy",
+    "plugins": [
+        {
+            "name": "Entity",
+            "speed": 50,
+            "hp": 25,
+            "type": "enemy",
+            "ai": false,
+            "spawnProjectile": {
+                "x": 0,
+                "y": 0
+            },
+            "attacks": [
+                {
+                    "damage": 25,
+                    "cooldown": 2,
+                    "projectile": "./Json/Server/Scene/Projectile/BasicProjectile.json"
+                }
+            ]
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [{
+                "x": 0,
+                "y": 0,
+                "width": 150,
+                "height": 150
+            }]
+        }
+    ]
+}

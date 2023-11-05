@@ -1,0 +1,46 @@
+{
+    "name": "CharacterB",
+    "plugins": [
+        {
+            "name": "Entity",
+            "speed": 300,
+            "hp": 300,
+            "type": "ally",
+            "ai": false,
+            "isPlayer": true,
+            "spawnProjectile": {
+                "x": 0,
+                "y": 0
+            },
+            "attacks": [
+                {
+                    "damage": 25,
+                    "cooldown": 4,
+                    "projectile": "./Json/Server/Scene/Projectile/BasicProjectileAlly.json"
+                },
+                {
+                    "damage": 30,
+                    "cooldown": 8,
+                    "projectile": "./Json/Server/Scene/Projectile/DirectionalProjectileAlly.json"
+                },
+                {
+                    "damage": 50,
+                    "cooldown": 25,
+                    "projectile": "./Json/Server/Scene/Projectile/BigProjectileAlly.json"
+                }
+            ]
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "width": 150,
+                    "height": 150
+                }
+            ]
+        }
+    ]
+}

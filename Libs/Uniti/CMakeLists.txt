@@ -4,5 +4,5 @@ message(STATUS "Fetching Uniti")
 
 FetchContent_Declare(Uniti
         GIT_REPOSITORY https://github.com/rtipe/Uniti.git
-        GIT_TAG V0.0.2)
+        GIT_TAG V0.0.5)
 FetchContent_MakeAvailable(Uniti)

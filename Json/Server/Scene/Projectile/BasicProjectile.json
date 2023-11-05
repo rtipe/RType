@@ -1,0 +1,24 @@
+{
+    "random": 20,
+    "name": "BasicProjectile",
+    "plugins": [
+        {
+            "name": "Projectile",
+            "speed": 200,
+            "damage": 25,
+            "type": "enemy"
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "width": 150,
+                    "height": 150
+                }
+            ]
+        }
+    ]
+}

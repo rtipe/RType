@@ -1,0 +1,29 @@
+{
+    "plugins": [],
+    "objects": [
+        {
+            "name": "Controller",
+            "plugins": [
+                {
+                    "name": "UserController",
+                    "characters": {
+                        "characterA": "./Json/Server/Scene/Character/CharacterA.json",
+                        "characterB": "./Json/Server/Scene/Character/CharacterB.json",
+                        "characterC": "./Json/Server/Scene/Character/CharacterC.json"
+                    }
+                },
+                {
+                    "name": "WaveSpawn",
+                    "spawnTime": 5,
+                    "enemies": [
+                        "./Json/Server/Scene/Enemies/basicEnemy.json",
+                        "./Json/Server/Scene/Enemies/Boss1.json",
+                        "./Json/Server/Scene/Enemies/Kamikaze.json",
+                        "./Json/Server/Scene/Enemies/Sniper.json",
+                        "./Json/Server/Scene/Enemies/Tank.json"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,91 @@
+{
+    "name": "BasicEnemy",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Enemy/basicEnemy.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 32,
+                "height": 32
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 224,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 192,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 160,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 128,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 96,
+                            "y": 0,
+                            "width": 32,
+                            "height": 16
+                        },
+                        {
+                            "x": 64,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 32,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 32,
+                            "height": 32
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "children": []
+}

@@ -1,0 +1,84 @@
+{
+    "name": "Kamikaze",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Enemy/kamikaze.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 65,
+                "height": 130
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 65.5,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 131,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 196.5,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 262,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 327.5,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        },
+                        {
+                            "x": 393,
+                            "y": 0,
+                            "width": 65,
+                            "height": 130
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

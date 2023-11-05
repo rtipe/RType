@@ -1,0 +1,70 @@
+{
+    "name": "Explosion",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Explosion.gif"
+            },
+            "textureRect": {
+                "x": 0,
+                "y": 98,
+                "width": 65,
+                "height": 65
+            }
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 98,
+                            "width": 65,
+                            "height": 65
+                        },
+                        {
+                            "x": 65,
+                            "y": 98,
+                            "width": 65,
+                            "height": 65
+                        },
+                        {
+                            "x": 130,
+                            "y": 98,
+                            "width": 65,
+                            "height": 65
+                        },
+                        {
+                            "x": 195,
+                            "y": 98,
+                            "width": 65,
+                            "height": 65
+                        },
+                        {
+                            "x": 260,
+                            "y": 98,
+                            "width": 65,
+                            "height": 65
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Explosion",
+            "timeBeforeExplosion": 0.5
+        }
+    ],
+    "children": []
+}

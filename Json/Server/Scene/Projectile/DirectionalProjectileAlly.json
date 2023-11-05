@@ -1,0 +1,25 @@
+{
+    "random": 20,
+    "name": "DirectionalProjectile",
+    "plugins": [
+        {
+            "name": "Projectile",
+            "speed": 225,
+            "damage": 30,
+            "type": "ally",
+            "directional": true
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "width": 150,
+                    "height": 150
+                }
+            ]
+        }
+    ]
+}

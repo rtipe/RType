@@ -1,0 +1,29 @@
+{
+    "random": 5,
+    "name": "Kamikaze",
+    "plugins": [
+        {
+            "name": "Entity",
+            "speed": 250,
+            "hp": 200,
+            "type": "enemy",
+            "ai": false,
+            "spawnProjectile": {
+                "x": 0,
+                "y": 0
+            },
+            "destroyDamage": 90,
+            "attacks": []
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": [{
+                "x": 0,
+                "y": 0,
+                "width": 150,
+                "height": 150
+            }]
+        }
+    ]
+}

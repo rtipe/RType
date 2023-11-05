@@ -1,0 +1,60 @@
+{
+    "name": "Boss",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        }
+    },
+    "plugins": [
+        {
+            "name": "PrintablePlugin",
+            "type": "sprite",
+            "texture": {
+                "path": "./Assets/Enemy/boss.gif"
+            },
+            "zIndex": -1,
+            "textureRect": {
+                "x": 0,
+                "y": 0,
+                "width": 260,
+                "height": 143
+            }
+        },
+        {
+            "name": "PhysicsPlugin",
+            "isOverlap": true,
+            "boxes": []
+        },
+        {
+            "name": "Animation",
+            "animations": [
+                {
+                    "name": "idle",
+                    "time": 0.2,
+                    "frames": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "width": 260,
+                            "height": 143
+                        },
+                        {
+                            "x": 0,
+                            "y": 143,
+                            "width": 260,
+                            "height": 143
+                        },
+                        {
+                            "x": 0,
+                            "y": 286,
+                            "width": 260,
+                            "height": 143
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "children": []
+}

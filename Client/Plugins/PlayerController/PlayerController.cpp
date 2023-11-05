@@ -84,7 +84,11 @@ void PlayerController::awake(const Json::Value &value) {
 }
 
 void PlayerController::preStart() {
-
+    Json::Value server;
+    server["name"] = "game";
+    server["ip"] = "127.0.0.1";
+    server["port"] = 5215;
+    this->_object.getCore().getPluginManager().emitEvent("addServer", server);
 }
 
 void PlayerController::start() {

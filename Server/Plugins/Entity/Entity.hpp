@@ -1,14 +1,26 @@
 //
-// Created by youba on 03/11/2023.
+// Created by youba on 04/11/2023.
 //
 
 #pragma once
 
 #include "IObjectPlugin.hpp"
+#include "Vector2f.hpp"
 
-class EntitiesHandler : public Uniti::IObjectPlugin {
+class Entity : public Uniti::IObjectPlugin {
 public:
-    EntitiesHandler(Uniti::Object &object);
+    enum EntityType {
+        ALLY,
+        ENEMY
+    };
+    struct Attack {
+        Attack(const Json::Value &attack);
+        Uniti::Clock clock;
+        float cooldown;
+        float damage;
+        Json::Value projectileObject;
+    };
+    Entity(Uniti::Object &object);
 
     Uniti::Object &getObject() override;
 
@@ -40,12 +52,20 @@ public:
 
     Uniti::Event &getEvent() override;
 
+    EntityType getType() const;
+    float &getHP();
+
 private:
-    std::vector<std::string> _deleteEntities;
-    std::map<std::string, Json::Value> _entities;
-    Json::Value _explosion;
-    std::vector<std::string> _noExplosion;
+    static int _id;
     Uniti::Object &_object;
     Uniti::Clock _clock;
     Uniti::Event _event;
+    float _speed;
+    float _hp;
+    float _destroyDamage;
+    EntityType _type;
+    bool _ai;
+    bool _player;
+    std::vector<Attack> _attacks;
+    Uniti::Vector2f _spawnProjectile;
 };
