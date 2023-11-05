@@ -1,0 +1,43 @@
+name: Lint C++ Code
+
+on: [pull_request]
+
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Set up Clang Format
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y clang-format
+          clang-format --version
+
+      - name: Lint C++ Code
+        run: |
+          find . -name "*.cpp" -exec clang-format -i -style=file {} \;
+
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git fetch --all
+          echo ${{ github.head_ref }}
+          git checkout ${{ github.head_ref }}
+          git add .
+          git diff --staged --quiet || git commit -m "Apply Clang Format"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
